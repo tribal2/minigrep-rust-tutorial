@@ -21,22 +21,6 @@ pub fn search_in_string<'a>(
     text: &'a String,
     case_sensitive: bool,
 ) -> Vec<&'a str> {
-    // let mut results = Vec::new();
-
-    // for line in text.lines() {
-    //     if case_sensitive {
-    //         if line.contains(query) {
-    //             results.push(line);
-    //         }
-    //     } else {
-    //         if line.to_lowercase().contains(&query.to_lowercase()) {
-    //             results.push(line);
-    //         }
-    //     }
-    // }
-
-    // results
-
     text
         .lines()
         .filter(|line| {
