@@ -4,12 +4,16 @@
 ///
 /// ```
 /// let text = "\
-/// several lines
+/// Several lines
 /// of text
 /// to search for".to_string();
 ///
-/// let results = minigrep::search::search_in_string("se", &text);
+/// // Case sensitive search
+/// let results = minigrep::search::search_in_string("se", &text, true);
+/// assert_eq!(1, results.len());
 ///
+/// // Case insensitive search
+/// let results = minigrep::search::search_in_string("se", &text, false);
 /// assert_eq!(2, results.len());
 /// ```
 pub fn search_in_string<'a>(
