@@ -1,14 +1,10 @@
 pub fn search_in_string<'a>(query: &'a str, text: &'a String) -> Vec<&'a str> {
-    let mut result: Vec<&str> = Vec::new();
-
-    for line in text.lines() {
-        if line.contains(query) {
-            result.push(line);
-        }
+    text
+        .lines()
+        .filter(|line| line.contains(query))
+        .collect()
     }
 
-    result
-}
 
 #[cfg(test)]
 mod tests {
