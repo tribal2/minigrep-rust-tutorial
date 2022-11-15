@@ -1,5 +1,6 @@
 use std::process;
 use clap::Parser;
+use minigrep::Config;
 
 #[derive(Parser, Debug)]
 #[command(author, version, about, long_about = None)]
@@ -16,12 +17,12 @@ struct Args {
 }
 
 fn main() {
-    // Obtenemos argumentos
-    let config = minigrep::Config::from_args()
-        .unwrap_or_else(|error| {
-            println!("{}", error);
-            process::exit(1);
-        });
+    let args = Args::parse();
+    let config = Config {
+        query: args.query,
+        file_path: args.file_path,
+        case_sensitive: args.case_sensitive,
+    };
 
     if let Err(e) = minigrep::app(config) {
         println!("Application error: {e}");
