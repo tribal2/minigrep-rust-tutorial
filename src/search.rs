@@ -63,7 +63,7 @@ Hola mundo
 Xopa mundo
 Hello world".to_string();
 
-        let results = search_in_string("mundo", &text);
+        let results = search_in_string("mundo", &text, true);
         assert_eq!(2, results.len());
     }
 }
