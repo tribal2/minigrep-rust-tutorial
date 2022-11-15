@@ -12,10 +12,38 @@
 ///
 /// assert_eq!(2, results.len());
 /// ```
-pub fn search_in_string<'a>(query: &'a str, text: &'a String) -> Vec<&'a str> {
+pub fn search_in_string<'a>(
+    query: &'a str,
+    text: &'a String,
+    case_sensitive: bool,
+) -> Vec<&'a str> {
+    // let mut results = Vec::new();
+
+    // for line in text.lines() {
+    //     if case_sensitive {
+    //         if line.contains(query) {
+    //             results.push(line);
+    //         }
+    //     } else {
+    //         if line.to_lowercase().contains(&query.to_lowercase()) {
+    //             results.push(line);
+    //         }
+    //     }
+    // }
+
+    // results
+
     text
         .lines()
-        .filter(|line| line.contains(query))
+        .filter(|line| {
+            if case_sensitive {
+                line.contains(query)
+            } else {
+                line
+                    .to_lowercase()
+                    .contains(&query.to_lowercase())
+            }
+        })
         .collect()
 }
 
