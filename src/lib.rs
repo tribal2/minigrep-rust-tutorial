@@ -3,6 +3,8 @@ pub mod search;
 use std::error::Error;
 use std::fs;
 
+use serde_json::json;
+
 pub fn app(cfg: Config) -> Result<(), Box<dyn Error>> {
     if cfg.verbose {
         println!("\nSearching for << {:?} >>", &cfg.query);
@@ -16,7 +18,7 @@ pub fn app(cfg: Config) -> Result<(), Box<dyn Error>> {
 
     if cfg.verbose { println!("\nResults:\n"); }
 
-    show_results(results, OutputMode::Lines);
+    show_results(results, OutputMode::Json);
 
     Ok(())
 }
@@ -29,7 +31,8 @@ fn show_results(results: Vec<&str>, mode: OutputMode) {
             }
         },
         OutputMode::Json => {
-            println!("Not implemented yet... =(");
+            let json = json!(results);
+            println!("{}", json.to_string());
         },
     }
 }
