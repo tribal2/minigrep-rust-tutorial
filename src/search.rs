@@ -40,14 +40,30 @@ pub fn search_in_string<'a>(
 mod tests {
     use super::*;
 
-    #[test]
-    fn it_should_return_2_results() {
-        let text = "\
-Hola mundo
-Xopa mundo
-Hello world".to_string();
+    const TEXT: &str = "\
+    Hola mundo
+    Xopa Mundo
+    Hello world";
 
-        let results = search_in_string("mundo", &text, true);
+    #[test]
+    fn case_sensitive_search_should_return_1_results() {
+        let text = TEXT.to_string();
+        let results = search_in_string(
+            "mundo",
+            &text,
+            true
+        );
+        assert_eq!(1, results.len());
+    }
+
+    #[test]
+    fn case_insensitive_search_should_return_2_results() {
+        let text = TEXT.to_string();
+        let results = search_in_string(
+            "mundo",
+            &text,
+            false
+        );
         assert_eq!(2, results.len());
     }
 }
