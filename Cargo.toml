@@ -2,8 +2,9 @@
 name = "minigrep"
 version = "0.1.0"
 edition = "2021"
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+authors = ["Ricardo Tribaldos (@tribal2)"]
+description = "Just a 'Grep' clone created to learn Rust"
+repository = "https://github.com/tribal2/minigrep-rust-tutorial"
 
 [dependencies]
 clap = { version = "4.0.25", features = ["derive"] }
