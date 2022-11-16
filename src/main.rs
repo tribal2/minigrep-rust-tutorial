@@ -1,6 +1,6 @@
 use std::process;
 use clap::Parser;
-use minigrep::Config;
+use minigrep::{Config, OutputMode};
 
 #[derive(Parser, Debug)]
 #[command(author, version, about, long_about = None)]
@@ -10,6 +10,15 @@ struct Args {
 
     /// File to search
     file_path: String,
+
+    /// Flag to activate output as JSON encoded string
+    #[arg(
+        value_enum,
+        short,
+        long,
+        default_value_t = OutputMode::Lines,
+    )]
+    output: OutputMode,
 
     /// Flag to activate case sensitive search
     #[arg(short, long, default_value_t = false)]
@@ -25,6 +34,7 @@ fn main() {
     let config = Config {
         query: args.query,
         file_path: args.file_path,
+        output: args.output,
         case_sensitive: args.case_sensitive,
         verbose: args.verbose,
     };
