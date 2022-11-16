@@ -14,6 +14,10 @@ struct Args {
     /// Flag to activate case sensitive search
     #[arg(short, long, default_value_t = false)]
     case_sensitive: bool,
+
+    /// Flag to activate verbose mode
+    #[arg(short, long, default_value_t = false)]
+    verbose: bool,
 }
 
 fn main() {
@@ -22,6 +26,7 @@ fn main() {
         query: args.query,
         file_path: args.file_path,
         case_sensitive: args.case_sensitive,
+        verbose: args.verbose,
     };
 
     if let Err(e) = minigrep::app(config) {
