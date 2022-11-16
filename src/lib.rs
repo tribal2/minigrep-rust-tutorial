@@ -16,11 +16,28 @@ pub fn app(cfg: Config) -> Result<(), Box<dyn Error>> {
 
     if cfg.verbose { println!("\nResults:\n"); }
 
-    println!("{:?}", results);
+    show_results(results, OutputMode::Lines);
 
     Ok(())
 }
 
+fn show_results(results: Vec<&str>, mode: OutputMode) {
+    match mode {
+        OutputMode::Lines => {
+            for line in results {
+                println!("{}", line);
+            }
+        },
+        OutputMode::Json => {
+            println!("Not implemented yet... =(");
+        },
+    }
+}
+
+enum OutputMode {
+    Lines,
+    Json,
+}
 
 pub struct Config {
     pub query: String,
